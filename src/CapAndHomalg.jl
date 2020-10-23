@@ -130,6 +130,10 @@ else
     end
 end
 
+# use ≟ as alias for ==
+≟ = ==
+export ≟
+
 function __init__()
 
     DownloadPackageFromHomalgProject("homalg_project")
