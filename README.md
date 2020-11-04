@@ -1,8 +1,13 @@
-# CapAndHomalg.jl
+<!-- BEGIN HEADER -->
+# CapAndHomalg.jl&ensp;<sup><sup>[![View code][code-img]][code-url]</sup></sup>
+
+### Simplified access to the repositories of the GitHub organization homalg-project
 
 | **Documentation** | **Build Status** | **GitHub Actions** |
 |:-----------------:|:----------------:|:------------------:|
 | [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] | [![][tests-img]][tests-url] [![][codecov-img]][codecov-url] | [![][tagbot-img]][tagbot-url] [![][docsbuilder-img]][docsbuilder-url] [![][compathelper-img]][compathelper-url] |
+
+<!-- END HEADER -->
 
 ## Introduction
 
@@ -76,6 +81,8 @@ This software is licensed under the LGPL, version 3, or any later version.
 
 *The development of both software projects was partially funded by the [DFG (German Research Foundation)](https://www.dfg.de/) through the [Special Priority Project SPP 1489](https://spp.computeralgebra.de/) and the [Transregional Collaborative Research Centre SFB-TRR 195](https://www.computeralgebra.de/sfb/).*
 
+<!-- BEGIN FOOTER -->
+
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
 [docs-dev-url]: https://homalg-project.github.io/CapAndHomalg.jl/dev/
 
@@ -95,3 +102,8 @@ This software is licensed under the LGPL, version 3, or any later version.
 
 [codecov-img]: https://codecov.io/gh/homalg-project/CapAndHomalg.jl/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/homalg-project/CapAndHomalg.jl
+
+[code-img]: https://img.shields.io/badge/-View%20code-blue?logo=github
+[code-url]: https://github.com/homalg-project/CapAndHomalg.jl#top
+
+<!-- END FOOTER -->
