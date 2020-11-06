@@ -46,9 +46,10 @@ This software is licensed under the LGPL, version 3, or any later version.
 
 ## Funding
 
-The development of both software projects was partially funded by the DFG (German Research Foundation) through
-the [Special Priority Project SPP 1489](https://spp.computeralgebra.de/) and
-the [Transregional Collaborative Research Centre SFB-TRR 195](https://www.computeralgebra.de/sfb/).
+*The development of this package and many of the GAP packages hosted on the GitHub organization homalg-project was partially funded by the DFG (German Research Foundation) through the*
+
+* [Special Priority Project SPP 1489](https://spp.computeralgebra.de/),
+* [Transregional Collaborative Research Centre SFB-TRR 195](https://www.computeralgebra.de/sfb/).
 
 More information and the online documentation can be found at the source code repository
 
