@@ -1,7 +1,7 @@
 @doc Markdown.doc"""
 
 The Julia package `CapAndHomalg` provides simplified access to the
-repositories of the GAP packages hosted at the GitHub organization
+repositories of the GAP packages hosted on the GitHub organization
 https://homalg-project.github.io/, most of which are based on the
 
 * CAP project,

@@ -5,7 +5,7 @@ CurrentModule = CapAndHomalg
 ```
 ## Introduction
 
-The [Julia](https://julialang.org/) package `CapAndHomalg` provides simplified access to the repositories of the [GAP](https://www.gap-system.org) packages hosted at the [GitHub organization homalg-project](https://homalg-project.github.io/), most of which are based on the
+The [Julia](https://julialang.org/) package `CapAndHomalg` provides simplified access to the repositories of the [GAP](https://www.gap-system.org) packages hosted on the [GitHub organization homalg-project](https://homalg-project.github.io/), most of which are based on the
 
 * [CAP project](https://github.com/homalg-project/CAP_project#readme),
 * [homalg project](https://github.com/homalg-project/homalg_project#readme).
