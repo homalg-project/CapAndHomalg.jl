@@ -14,11 +14,18 @@ These are open source [GAP](https://www.gap-system.org) multi-package projects f
 
 ## Installation
 
-To install Julia follow the instructions of the first two steps on the [Oscar installation page](https://oscar.computeralgebra.de/install/). Then start Julia and add the package `CapAndHomalg`:
+#### Install Julia
+
+To install Julia follow the first Steps 0 and 1 on our [installation page](https://homalg-project.github.io/docs/installation).
+
+#### Install `CapAndHomalg.jl`
+
+Then start `julia` in a terminal and add the package `CapAndHomalg`:
 
 ```julia
-$ julia
 julia> using Pkg; Pkg.add("CapAndHomalg")
+
+julia> using CapAndHomalg
 ```
 
 ## Testing
@@ -31,8 +38,11 @@ julia> using Pkg; Pkg.test("CapAndHomalg")
 
 ## Updating
 
+After each update of the Julia package `GAP` a rebuild is (probably) necessary:
+
 ```julia
 julia> using Pkg; Pkg.update("CapAndHomalg")
+
 julia> Pkg.build("CapAndHomalg")
 ```
 

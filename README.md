@@ -22,15 +22,16 @@ These are open source [GAP](https://www.gap-system.org) multi-package projects f
 
 #### Install Julia
 
-To install Julia follow the first two steps on our [installation page](https://homalg-project.github.io/docs/installation).
+To install Julia follow the first Steps 0 and 1 on our [installation page](https://homalg-project.github.io/docs/installation).
 
 #### Install `CapAndHomalg.jl`
 
-Then start Julia and add the package `CapAndHomalg`:
+Then start `julia` in a terminal and add the package `CapAndHomalg`:
 
 ```julia
-$ julia
 julia> using Pkg; Pkg.add("CapAndHomalg")
+
+julia> using CapAndHomalg
 ```
 
 For more information on the included [GAP](https://www.gap-system.org) packages see the [documentation](https://homalg-project.github.io/CapAndHomalg.jl/dev/#Installation-1).
