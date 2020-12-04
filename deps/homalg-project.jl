@@ -299,7 +299,7 @@ in [`PACKAGES_TO_COMPILE`](@ref).
 function CompilePackagesForHomalgProject()
     
     for pkg in PACKAGES_TO_COMPILE
-        GAP.Packages.install(pkg)
+        GAP.Packages.install(pkg, interactive = false)
     end
     
 end
