@@ -284,7 +284,7 @@ global PACKAGES_TO_COMPILE = [
     #"Browse", ## do not compile browse as it results into GAP raising the error "Error opening terminal: xterm-256color."
     "io",
     "grape",
-    "digraphs",
+    "https://digraphs.github.io/Digraphs/PackageInfo.g",
     "ferret",
     "json",
     "orb",
