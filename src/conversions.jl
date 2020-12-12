@@ -1,3 +1,9 @@
+function LoadPackage(pkgname::String)
+    GAP.LoadPackageAndExposeGlobals(pkgname, Main, all_globals = true)
+end
+
+export LoadPackage
+
 function HomalgMatrix(M::String, m::Int64, n::Int64, R::GAP.GapObj)
     return GAP.Globals.HomalgMatrix(julia_to_gap(M), m, n, R)
 end
@@ -10,8 +16,17 @@ end
 
 export RepresentationCategoryObject
 
+function SizeScreen()
+    return gap_to_julia(GAP.Globals.SizeScreen())
+end
+
 function SizeScreen(L::Array)
-    return GAP.Globals.SizeScreen(julia_to_gap(L))
+    return gap_to_julia(GAP.Globals.SizeScreen(julia_to_gap(L)))
 end
 
 export SizeScreen
+
+## used in ../deps/usr/bin/gap-with-cap-and-homalg-via-julia
+global SIZE_SCREEN_ORIGINAL = SizeScreen()
+
+export SIZE_SCREEN_ORIGINAL
