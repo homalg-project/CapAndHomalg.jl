@@ -16,6 +16,10 @@ end
 
 export RepresentationCategoryObject
 
+function SizeScreen()
+    return gap_to_julia(GAP.Globals.SizeScreen())
+end
+
 function SizeScreen(L::Array)
     return gap_to_julia(GAP.Globals.SizeScreen(julia_to_gap(L)))
 end
