@@ -155,7 +155,7 @@ function __init__()
     DownloadPackageFromHomalgProject("CAP_project")
 
     ## Read( "Tools.g" )
-    path = julia_to_gap(joinpath(HOMALG_PROJECT_PATH, "src", "Tools.g"))
+    path = julia_to_gap(joinpath(CAP_AND_HOMALG_PATH, "src", "Tools.g"))
     GAP.Globals.Read(path)
 
     ## add "~/.gap/" at the end of GAPInfo.RootPaths
@@ -163,7 +163,7 @@ function __init__()
 
     ## add "~/.julia/.../CapAndHomalg/" at the beginning of GAPInfo.RootPaths
     GAP.Globals.EnhanceRootDirectories(julia_to_gap([julia_to_gap(
-        HOMALG_PROJECT_PATH * "/",
+        CAP_AND_HOMALG_PATH * "/",
     )]))
 
     if GAP.Globals.TestPackageAvailability(julia_to_gap("io")) == GAP.Globals.fail
@@ -195,8 +195,8 @@ function __init__()
 
     UseSystemSingular(false)
 
-    if haskey(ENV, "CAP_AND_HOMALG_PROJECT_SHOW_BANNER")
-        show_banner = ENV["CAP_AND_HOMALG_PROJECT_SHOW_BANNER"] == "true"
+    if haskey(ENV, "CAP_AND_HOMALG_SHOW_BANNER")
+        show_banner = ENV["CAP_AND_HOMALG_SHOW_BANNER"] == "true"
     else
         show_banner =
             isinteractive() && !any(x -> x.name in ["Oscar", "HomalgProject"], keys(Base.package_locks))

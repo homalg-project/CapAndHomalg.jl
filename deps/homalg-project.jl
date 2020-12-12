@@ -1,4 +1,4 @@
-global HOMALG_PROJECT_PATH = dirname(@__DIR__)
+global CAP_AND_HOMALG_PATH = dirname(@__DIR__)
 
 import GAP
 import GAP: julia_to_gap, gap_to_julia, @g_str, @gap, GapObj
@@ -14,7 +14,7 @@ packages from the GitHub organization
 [https://github.com/homalg-project/](https://github.com/homalg-project/).
 It is equal to `joinpath(pathof(CapAndHomalg), "pkg")`.
 """
-global PKG_DIR = joinpath(HOMALG_PROJECT_PATH, "pkg")
+global PKG_DIR = joinpath(CAP_AND_HOMALG_PATH, "pkg")
 
 """
     DownloadPackageFromHomalgProject(pkgname)
@@ -308,7 +308,7 @@ export CompilePackagesForHomalgProject
 
 global PACKAGES_DOWNLOADING_EXTERNAL_CODE = ["CddInterface", "NormalizInterface"]
 
-## $(HOMALG_PROJECT_PATH)/deps/usr/bin should remain the last entry
-global HOMALG_PATHS = [joinpath(HOMALG_PROJECT_PATH, "deps", "usr", "bin")]
+## $(CAP_AND_HOMALG_PATH)/bin should remain the last entry
+global HOMALG_PATHS = [joinpath(CAP_AND_HOMALG_PATH, "deps", "usr", "bin")]
 
 export HOMALG_PATHS
