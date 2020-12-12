@@ -145,41 +145,6 @@ end
 
 export UseSystemSingular
 
-"""
-    CapAndHomalg.version
-
-The version number of the loaded `CapAndHomalg`.
-Please mention this number in any bug report.
-"""
-global version = 0
-
-if VERSION >= v"1.4"
-    deps = Pkg.dependencies()
-    if Base.haskey(deps, Base.UUID("c4774649-1891-41ea-a883-87141804c57c"))
-        ver = Pkg.dependencies()[Base.UUID("c4774649-1891-41ea-a883-87141804c57c")]
-        if occursin("/dev/", ver.source)
-            version = VersionNumber("$(ver.version)-dev")
-        else
-            version = VersionNumber("$(ver.version)")
-        end
-    else
-        version = "not installed"
-    end
-else
-    deps = Pkg.API.__installed(Pkg.PKGMODE_MANIFEST) #to also get installed dependencies
-    if haskey(deps, "CapAndHomalg")
-        ver = deps["CapAndHomalg"]
-        dir = dirname(@__DIR__)
-        if occursin("/dev/", dir)
-            version = VersionNumber("$(ver)-dev")
-        else
-            version = VersionNumber("$(ver)")
-        end
-    else
-        version = "not installed"
-    end
-end
-
 # use ≟ as alias for ==
 ≟ = ==
 export ≟
@@ -244,6 +209,41 @@ function __init__()
         println("Type: ?CapAndHomalg for more information")
     end
 
+end
+
+"""
+    CapAndHomalg.version
+
+The version number of the loaded `CapAndHomalg`.
+Please mention this number in any bug report.
+"""
+global version = 0
+
+if VERSION >= v"1.4"
+    deps = Pkg.dependencies()
+    if Base.haskey(deps, Base.UUID("c4774649-1891-41ea-a883-87141804c57c"))
+        ver = Pkg.dependencies()[Base.UUID("c4774649-1891-41ea-a883-87141804c57c")]
+        if occursin("/dev/", ver.source)
+            version = VersionNumber("$(ver.version)-dev")
+        else
+            version = VersionNumber("$(ver.version)")
+        end
+    else
+        version = "not installed"
+    end
+else
+    deps = Pkg.API.__installed(Pkg.PKGMODE_MANIFEST) #to also get installed dependencies
+    if haskey(deps, "CapAndHomalg")
+        ver = deps["CapAndHomalg"]
+        dir = dirname(@__DIR__)
+        if occursin("/dev/", dir)
+            version = VersionNumber("$(ver)-dev")
+        else
+            version = VersionNumber("$(ver)")
+        end
+    else
+        version = "not installed"
+    end
 end
 
 end # module
