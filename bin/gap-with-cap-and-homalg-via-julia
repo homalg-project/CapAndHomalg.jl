@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This is a a Julia script which also is a valid bash script; if executed by
 # bash, it will execute itself by invoking `julia`. Of course this only works
 # right if `julia` exists in the PATH and is the "correct" julia executable.
