@@ -1,3 +1,9 @@
+function LoadPackage(pkgname::String)
+    GAP.LoadPackageAndExposeGlobals(pkgname, Main, all_globals = true)
+end
+
+export LoadPackage
+
 function HomalgMatrix(M::String, m::Int64, n::Int64, R::GAP.GapObj)
     return GAP.Globals.HomalgMatrix(julia_to_gap(M), m, n, R)
 end

@@ -78,12 +78,6 @@ end
 Base.show(io::IO, ::MIME"application/x-latex", obj::GapObj) = print(io, string("\$\$", gap_to_julia(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
 Base.show(io::IO, ::MIME"text/latex", obj::GapObj) = print(io, string("\$\$", gap_to_julia(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
 
-function LoadPackage(pkgname::String)
-    GAP.LoadPackageAndExposeGlobals(pkgname, Main, all_globals = true)
-end
-
-export LoadPackage
-
 ## Convenience
 include("conversions.jl")
 
