@@ -246,4 +246,6 @@ else
     end
 end
 
+include("setup.jl")
+
 end # module

@@ -8,3 +8,4 @@ Manifest.toml
 /docs/site/
 /pkg/
 /deps/build.log
+/bin/v*/

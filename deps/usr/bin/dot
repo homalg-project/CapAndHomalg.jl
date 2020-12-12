@@ -1,7 +1,0 @@
-#!/bin/sh
-# dot
-julia --startup-file=no -O0 -e 'import Graphviz_jll
-Graphviz_jll.dot() do x
- p=run(ignorestatus(`$x $ARGS`))
- exit(p.exitcode)
-end' -- "$@"

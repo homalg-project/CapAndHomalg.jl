@@ -309,6 +309,9 @@ export CompilePackagesForHomalgProject
 global PACKAGES_DOWNLOADING_EXTERNAL_CODE = ["CddInterface", "NormalizInterface"]
 
 ## $(CAP_AND_HOMALG_PATH)/bin should remain the last entry
-global HOMALG_PATHS = [joinpath(CAP_AND_HOMALG_PATH, "deps", "usr", "bin")]
+global HOMALG_PATHS = [
+    joinpath(CAP_AND_HOMALG_PATH, "bin"),
+    joinpath(CAP_AND_HOMALG_PATH, "bin", "v$(VERSION.major).$(VERSION.minor)"),
+]
 
 export HOMALG_PATHS
