@@ -145,6 +145,72 @@ end
 
 export UseSystemSingular
 
+# use ≟ as alias for ==
+≟ = ==
+export ≟
+
+function __init__()
+
+    DownloadPackageFromHomalgProject("homalg_project")
+    DownloadPackageFromHomalgProject("CAP_project")
+
+    ## Read( "Tools.g" )
+    path = julia_to_gap(joinpath(CAP_AND_HOMALG_PATH, "src", "Tools.g"))
+    GAP.Globals.Read(path)
+
+    ## add "~/.gap/" at the end of GAPInfo.RootPaths
+    GAP.Globals.ExtendRootDirectories(julia_to_gap([GAP.Globals.UserHomeExpand(julia_to_gap("~/.gap/"))]))
+
+    ## add "~/.julia/.../CapAndHomalg/" at the beginning of GAPInfo.RootPaths
+    GAP.Globals.EnhanceRootDirectories(julia_to_gap([julia_to_gap(
+        CAP_AND_HOMALG_PATH * "/",
+    )]))
+
+    if GAP.Globals.TestPackageAvailability(julia_to_gap("io")) == GAP.Globals.fail
+        GAP.Packages.install("io")
+    end
+
+    ## add binary paths to GAPInfo.DirectoriesSystemPrograms
+    paths = GAP.Globals.Concatenation(
+        julia_to_gap(map(julia_to_gap, HOMALG_PATHS)),
+        GAP.Globals.GAPInfo.DirectoriesSystemPrograms
+    )
+    paths = GAP.Globals.Unique(paths)
+    GAP.Globals.GAPInfo.DirectoriesSystemPrograms = paths
+    GAP.Globals.GAPInfo.DirectoriesPrograms = GAP.Globals.List(
+        GAP.Globals.GAPInfo.DirectoriesSystemPrograms,
+        GAP.Globals.Directory
+    )
+
+    ## needed by the variable HOMALG_IO_Singular below
+    LoadPackage("RingsForHomalg")
+
+    SizeScreen( [ 2^12 ] )
+
+    ## loading IO_ForHomalg now suppresses its banner later
+    LoadPackage("IO_ForHomalg")
+
+    ## suppress banners of external CAS
+    GAP.Globals.HOMALG_IO.show_banners = false
+
+    UseSystemSingular(false)
+
+    if haskey(ENV, "CAP_AND_HOMALG_SHOW_BANNER")
+        show_banner = ENV["CAP_AND_HOMALG_SHOW_BANNER"] == "true"
+    else
+        show_banner =
+            isinteractive() && !any(x -> x.name in ["Oscar", "HomalgProject"], keys(Base.package_locks))
+    end
+
+    if show_banner
+        print("CapAndHomalg v")
+        printstyled("$version\n", color = :green)
+        println("Imported OSCAR's components GAP and Singular_jll")
+        println("Type: ?CapAndHomalg for more information")
+    end
+
+end
+
 """
     CapAndHomalg.version
 
@@ -180,70 +246,6 @@ else
     end
 end
 
-# use ≟ as alias for ==
-≟ = ==
-export ≟
-
-function __init__()
-
-    DownloadPackageFromHomalgProject("homalg_project")
-    DownloadPackageFromHomalgProject("CAP_project")
-
-    ## Read( "Tools.g" )
-    path = julia_to_gap(joinpath(HOMALG_PROJECT_PATH, "src", "Tools.g"))
-    GAP.Globals.Read(path)
-
-    ## add "~/.gap/" at the end of GAPInfo.RootPaths
-    GAP.Globals.ExtendRootDirectories(julia_to_gap([GAP.Globals.UserHomeExpand(julia_to_gap("~/.gap/"))]))
-
-    ## add "~/.julia/.../CapAndHomalg/" at the beginning of GAPInfo.RootPaths
-    GAP.Globals.EnhanceRootDirectories(julia_to_gap([julia_to_gap(
-        HOMALG_PROJECT_PATH * "/",
-    )]))
-
-    if GAP.Globals.TestPackageAvailability(julia_to_gap("io")) == GAP.Globals.fail
-        GAP.Packages.install("io")
-    end
-
-    ## add binary paths to GAPInfo.DirectoriesSystemPrograms
-    paths = GAP.Globals.Concatenation(
-        julia_to_gap(map(julia_to_gap, HOMALG_PATHS)),
-        GAP.Globals.GAPInfo.DirectoriesSystemPrograms
-    )
-    paths = GAP.Globals.Unique(paths)
-    GAP.Globals.GAPInfo.DirectoriesSystemPrograms = paths
-    GAP.Globals.GAPInfo.DirectoriesPrograms = GAP.Globals.List(
-        GAP.Globals.GAPInfo.DirectoriesSystemPrograms,
-        GAP.Globals.Directory
-    )
-
-    ## needed by the variable HOMALG_IO_Singular below
-    LoadPackage("RingsForHomalg")
-
-    SizeScreen( [ 2^12 ] )
-
-    ## loading IO_ForHomalg now suppresses its banner later
-    LoadPackage("IO_ForHomalg")
-
-    ## suppress banners of external CAS
-    GAP.Globals.HOMALG_IO.show_banners = false
-
-    UseSystemSingular(false)
-
-    if haskey(ENV, "CAP_AND_HOMALG_PROJECT_SHOW_BANNER")
-        show_banner = ENV["CAP_AND_HOMALG_PROJECT_SHOW_BANNER"] == "true"
-    else
-        show_banner =
-            isinteractive() && !any(x -> x.name in ["Oscar", "HomalgProject"], keys(Base.package_locks))
-    end
-
-    if show_banner
-        print("CapAndHomalg v")
-        printstyled("$version\n", color = :green)
-        println("Imported OSCAR's components GAP and Singular_jll")
-        println("Type: ?CapAndHomalg for more information")
-    end
-
-end
+include("setup.jl")
 
 end # module

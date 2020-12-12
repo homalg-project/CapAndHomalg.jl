@@ -1,7 +1,0 @@
-#!/bin/sh
-# groebner
-julia --startup-file=no -O0 -e 'import lib4ti2_jll
-lib4ti2_jll.exe4ti2gmp() do x
- p=run(ignorestatus(`$x groebner $ARGS`))
- exit(p.exitcode)
-end' -- "$@"

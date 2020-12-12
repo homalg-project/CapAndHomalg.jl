@@ -1,7 +1,0 @@
-#!/bin/sh
-# zsolve
-julia --startup-file=no -O0 -e 'import lib4ti2_jll
-lib4ti2_jll.zsolve() do x
- p=run(ignorestatus(`$x $ARGS`))
- exit(p.exitcode)
-end' -- "$@"
