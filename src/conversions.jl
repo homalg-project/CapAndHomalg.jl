@@ -25,3 +25,8 @@ function SizeScreen(L::Array)
 end
 
 export SizeScreen
+
+## used in ../deps/usr/bin/gap-with-cap-and-homalg-via-julia
+global SIZE_SCREEN_ORIGINAL = SizeScreen()
+
+export SIZE_SCREEN_ORIGINAL
