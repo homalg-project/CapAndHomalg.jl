@@ -69,7 +69,7 @@ import Markdown
 
 Base.:*(x::GAP.GapObj, y::String) = x * julia_to_gap(y)
 Base.getindex(x::GAP.GapObj, y::String) = GAP.Globals.ELM_LIST(x, julia_to_gap(y))
-Base.:/(x::GAP.GapObj, y::Array{Main.ForeignGAP.MPtr,1}) = GAP.Globals.QUO(x, julia_to_gap(y))
+Base.:/(x::GAP.GapObj, y::Array{GAP.GapObj,1}) = GAP.Globals.QUO(x, julia_to_gap(y))
 
 function Base.showable(mime::MIME, obj::GapObj)
     return GAP.Globals.IsShowable(julia_to_gap(string(mime)), obj)
@@ -123,7 +123,7 @@ function UseSystemSingular(bool::Bool)
         GAP.Globals.HOMALG_IO_Singular.environment =
             julia_to_gap([julia_to_gap("LD_LIBRARY_PATH=" * lib * ":\$LD_LIBRARY_PATH"),
                           julia_to_gap("DYLD_LIBRARY_PATH=" * lib * ":\$DYLD_LIBRARY_PATH")])
-        
+
         return true
 
     end
