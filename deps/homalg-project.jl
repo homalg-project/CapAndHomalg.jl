@@ -173,7 +173,7 @@ global PACKAGES_BASED_ON_CAP = [
 ]
 
 ##
-global PACKAGES_BASED_ON_TORIC_VARIETIES_PROJECT = [
+global PACKAGES_BASED_ON_TORIC_VARIETIES = [
     "ToricVarieties_project",
 ]
 
