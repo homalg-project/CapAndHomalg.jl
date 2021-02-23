@@ -173,6 +173,11 @@ global PACKAGES_BASED_ON_CAP = [
 ]
 
 ##
+global PACKAGES_BASED_ON_TORIC_VARIETIES_PROJECT = [
+    "ToricVarieties_project",
+]
+
+##
 global PACKAGES_NEEDED = [
     ##
     "InfiniteLists",
@@ -186,7 +191,7 @@ List of packages which will be considered by
 * [`UpdateAllPackagesFromHomalgProject`](@ref)()
 * [`RemoveAllPackagesFromHomalgProject`](@ref)()
 """
-global PACKAGES_TO_DOWNLOAD = vcat(PACKAGES_BASED_ON_HOMALG, PACKAGES_BASED_ON_CAP, PACKAGES_NEEDED)
+global PACKAGES_TO_DOWNLOAD = vcat(PACKAGES_BASED_ON_HOMALG, PACKAGES_BASED_ON_CAP, PACKAGES_BASED_ON_TORIC_VARIETIES_PROJECT, PACKAGES_NEEDED)
 
 """
     CapAndHomalg.PACKAGES_DEPRECATED
