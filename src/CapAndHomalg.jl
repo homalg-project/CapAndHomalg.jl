@@ -154,6 +154,7 @@ function __init__()
 
     DownloadPackageFromHomalgProject("homalg_project")
     DownloadPackageFromHomalgProject("CAP_project")
+    DownloadPackageFromHomalgProject("ToricVarieties_project")
 
     ## Read( "Tools.g" )
     path = julia_to_gap(joinpath(CAP_AND_HOMALG_PATH, "src", "Tools.g"))
