@@ -4,8 +4,12 @@ end
 
 export LoadPackage
 
-function HomalgMatrix(M::String, m::Int64, n::Int64, R::GAP.GapObj)
-    return GAP.Globals.HomalgMatrix(julia_to_gap(M), m, n, R)
+function HomalgMatrix(M::Any, m::Int64, n::Int64, R::GAP.GapObj)
+    return GAP.Globals.HomalgMatrix(GAP.Globals.ConvertJuliaToGAP(M), m, n, R)
+end
+
+function HomalgMatrix(M::Any, R::GAP.GapObj)
+    return GAP.Globals.HomalgMatrix(GAP.Globals.ConvertJuliaToGAP(M), R)
 end
 
 export HomalgMatrix
