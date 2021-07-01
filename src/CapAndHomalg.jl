@@ -70,6 +70,7 @@ import Markdown
 Base.:*(x::GAP.GapObj, y::String) = x * julia_to_gap(y)
 Base.getindex(x::GAP.GapObj, y::String) = GAP.Globals.ELM_LIST(x, julia_to_gap(y))
 Base.getindex(x::GAP.GapObj, y::GAP.GapObj) = GAP.Globals.ELM_LIST(x, y)
+Base.:/(x::Any, y::GAP.GapObj) = GAP.Globals.QUO(GAP.Globals.ConvertJuliaToGAP(x), y)
 Base.:/(x::GAP.GapObj, y::Array{GAP.GapObj,1}) = GAP.Globals.QUO(x, julia_to_gap(y))
 
 function Base.showable(mime::MIME, obj::GapObj)
