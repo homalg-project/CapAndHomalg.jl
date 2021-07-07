@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Examples · CapAndHomalg.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.039/juliamono-regular.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">CapAndHomalg.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li class="is-active"><a class="tocitem" href>Examples</a><ul class="internal"><li><a class="tocitem" href="#Examples"><span>Examples</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Examples</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Examples</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/homalg-project/CapAndHomalg.jl/blob/master/docs/src/examples.md#L" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="CapAndHomalg.jl"><a class="docs-heading-anchor" href="#CapAndHomalg.jl">CapAndHomalg.jl</a><a id="CapAndHomalg.jl-1"></a><a class="docs-heading-anchor-permalink" href="#CapAndHomalg.jl" title="Permalink"></a></h1><h2 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h2><p>The following examples tests the functionality of the software projects</p><ul><li><a href="https://github.com/homalg-project/homalg_project">homalg project</a></li><li><a href="https://github.com/homalg-project/CAP_project">CAP project</a></li></ul><pre><code class="language-julia-repl">julia&gt; using CapAndHomalg
+
+julia&gt; LoadPackage( &quot;GradedModules&quot; )
+
+julia&gt; ℚ = HomalgFieldOfRationalsInSingular( )
+GAP: Q
+
+julia&gt; R = ℚ[&quot;x,y,z&quot;]
+GAP: Q[x,y,z]
+
+julia&gt; m = &quot;[ x*y,y*z,z,0,0, x^3*z,x^2*z^2,0,x*z^2,-z^2, x^4,x^3*z,0,x^2*z,-x*z, 0,0,x*y,-y^2,x^2-1, 0,0,x^2*z,-x*y*z,y*z, 0,0,x^2*y-x^2,-x*y^2+x*y,y^2-y ]&quot;;
+
+julia&gt; m = HomalgMatrix( m, 6, 5, R )
+GAP: &lt;A 6 x 5 matrix over an external ring&gt;
+
+julia&gt; M = LeftPresentation( m )
+GAP: &lt;A left module presented by 6 relations for 5 generators&gt;
+
+julia&gt; Display( M )
+x*y,  y*z,    z,        0,         0,
+x^3*z,x^2*z^2,0,        x*z^2,     -z^2,
+x^4,  x^3*z,  0,        x^2*z,     -x*z,
+0,    0,      x*y,      -y^2,      x^2-1,
+0,    0,      x^2*z,    -x*y*z,    y*z,
+0,    0,      x^2*y-x^2,-x*y^2+x*y,y^2-y
+
+Cokernel of the map
+
+Q[x,y,z]^(1x6) --&gt; Q[x,y,z]^(1x5),
+
+currently represented by the above matrix
+
+julia&gt; filt = PurityFiltration( M )
+GAP: &lt;The ascending purity filtration with degrees [ -3 .. 0 ] and graded parts:
+   0:	&lt;A codegree-[ 1, 1 ]-pure rank 2 left module presented by 3 relations for 4 generators&gt;
+  -1:	&lt;A codegree-1-pure grade 1 left module presented by 4 relations for 3 generators&gt;
+  -2:	&lt;A cyclic reflexively pure grade 2 left module presented by 2 relations for a cyclic generator&gt;
+  -3:	&lt;A cyclic reflexively pure grade 3 left module presented by 3 relations for a cyclic generator&gt;
+of
+&lt;A non-pure rank 2 left module presented by 6 relations for 5 generators&gt;&gt;
+
+julia&gt; Display( filt )
+Degree 0:
+
+0,  0,x, -y,
+x*y,0,-z,0,
+x^2,0,0, -z
+
+Cokernel of the map
+
+Q[x,y,z]^(1x3) --&gt; Q[x,y,z]^(1x4),
+
+currently represented by the above matrix
+----------
+Degree -1:
+
+y,-z,0,
+0,x, -y,
+x,0, -z,
+0,-y,x^2-1
+
+Cokernel of the map
+
+Q[x,y,z]^(1x4) --&gt; Q[x,y,z]^(1x3),
+
+currently represented by the above matrix
+----------
+Degree -2:
+
+Q[x,y,z]/&lt; z, y-1 &gt;
+----------
+Degree -3:
+
+Q[x,y,z]/&lt; z, y, x &gt;
+
+julia&gt; II_E = SpectralSequence( filt )
+GAP: &lt;A stable homological spectral sequence with sheets at levels [ 0 .. 4 ] each consisting of left modules at bidegrees [ -3 .. 0 ]x[ 0 .. 3 ]&gt;
+
+julia&gt; Display( II_E )
+The associated transposed spectral sequence:
+
+a homological spectral sequence at bidegrees
+[ [ 0 .. 3 ], [ -3 .. 0 ] ]
+---------
+Level 0:
+
+ * * * *
+ * * * *
+ . * * *
+ . . * *
+---------
+Level 1:
+
+ * * * *
+ . . . .
+ . . . .
+ . . . .
+---------
+Level 2:
+
+ s . . .
+ . . . .
+ . . . .
+ . . . .
+
+Now the spectral sequence of the bicomplex:
+
+a homological spectral sequence at bidegrees
+[ [ -3 .. 0 ], [ 0 .. 3 ] ]
+---------
+Level 0:
+
+ * * * *
+ * * * *
+ . * * *
+ . . * *
+---------
+Level 1:
+
+ * * * *
+ * * * *
+ . * * *
+ . . . *
+---------
+Level 2:
+
+ s . . .
+ * s . .
+ . * * .
+ . . . *
+---------
+Level 3:
+
+ s . . .
+ * s . .
+ . . s .
+ . . . *
+---------
+Level 4:
+
+ s . . .
+ . s . .
+ . . s .
+ . . . s
+
+julia&gt; FilteredByPurity( M )
+GAP: &lt;A non-pure rank 2 left module presented by 12 relations for 9 generators&gt;
+
+julia&gt; Display( M )
+0,  0,x, -y,0,1, 0,    0,  0,
+x*y,0,-z,0, 0,0, 0,    0,  0,
+x^2,0,0, -z,1,0, 0,    0,  0,
+0,  0,0, 0, y,-z,0,    0,  0,
+0,  0,0, 0, 0,x, -y,   -1, 0,
+0,  0,0, 0, x,0, -z,   0,  -1,
+0,  0,0, 0, 0,-y,x^2-1,0,  0,
+0,  0,0, 0, 0,0, 0,    z,  0,
+0,  0,0, 0, 0,0, 0,    y-1,0,
+0,  0,0, 0, 0,0, 0,    0,  z,
+0,  0,0, 0, 0,0, 0,    0,  y,
+0,  0,0, 0, 0,0, 0,    0,  x
+
+Cokernel of the map
+
+Q[x,y,z]^(1x12) --&gt; Q[x,y,z]^(1x9),
+
+currently represented by the above matrix
+
+julia&gt; OnFirstStoredPresentation( M )
+GAP: &lt;A non-pure rank 2 left module presented by 6 relations for 5 generators&gt;
+
+julia&gt; Display( M )
+x*y,  y*z,    z,        0,         0,
+x^3*z,x^2*z^2,0,        x*z^2,     -z^2,
+x^4,  x^3*z,  0,        x^2*z,     -x*z,
+0,    0,      x*y,      -y^2,      x^2-1,
+0,    0,      x^2*z,    -x*y*z,    y*z,
+0,    0,      x^2*y-x^2,-x*y^2+x*y,y^2-y
+
+Cokernel of the map
+
+Q[x,y,z]^(1x6) --&gt; Q[x,y,z]^(1x5),
+
+currently represented by the above matrix
+
+julia&gt; OnLastStoredPresentation( M )
+GAP: &lt;A non-pure rank 2 left module presented by 12 relations for 9 generators&gt;
+
+julia&gt; Display( M )
+0,  0,x, -y,0,1, 0,    0,  0,
+x*y,0,-z,0, 0,0, 0,    0,  0,
+x^2,0,0, -z,1,0, 0,    0,  0,
+0,  0,0, 0, y,-z,0,    0,  0,
+0,  0,0, 0, 0,x, -y,   -1, 0,
+0,  0,0, 0, x,0, -z,   0,  -1,
+0,  0,0, 0, 0,-y,x^2-1,0,  0,
+0,  0,0, 0, 0,0, 0,    z,  0,
+0,  0,0, 0, 0,0, 0,    y-1,0,
+0,  0,0, 0, 0,0, 0,    0,  z,
+0,  0,0, 0, 0,0, 0,    0,  y,
+0,  0,0, 0, 0,0, 0,    0,  x
+
+Cokernel of the map
+
+Q[x,y,z]^(1x12) --&gt; Q[x,y,z]^(1x9),
+
+currently represented by the above matrix
+</code></pre><pre><code class="language-julia-repl">julia&gt; using CapAndHomalg
+
+julia&gt; LoadPackage( &quot;GradedModulePresentationsForCAP&quot; )
+
+julia&gt; ℚ = HomalgFieldOfRationalsInSingular( )
+GAP: Q
+
+julia&gt; S = GradedRing( ℚ[&quot;x,y&quot;] )
+GAP: Q[x,y]
+(weights: yet unset)
+
+julia&gt; Sgrmod = GradedLeftPresentations( S )
+GAP: The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ])
+
+julia&gt; InfoOfInstalledOperationsOfCategory( Sgrmod )
+40 primitive operations were used to derive 179 operations for this category which
+* IsAbCategory
+* IsMonoidalCategory
+* IsAbelianCategoryWithEnoughProjectives
+
+julia&gt; #ListPrimitivelyInstalledOperationsOfCategory( Sgrmod )
+
+julia&gt; M = GradedFreeLeftPresentation( 2, S, @gap([ 1, 1 ]) )
+GAP: &lt;An object in The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ])&gt;
+
+julia&gt; N = GradedFreeLeftPresentation( 1, S, @gap([ 0 ]) )
+GAP: &lt;An object in The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ])&gt;
+
+julia&gt; mat = HomalgMatrix( &quot;[x,y]&quot;, 2, 1, S )
+GAP: &lt;A 2 x 1 matrix over a graded ring&gt;
+
+julia&gt; Display( mat )
+x,
+y
+(over a graded ring)
+
+julia&gt; ϕ = GradedPresentationMorphism( M, mat, N )
+GAP: &lt;A morphism in The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ])&gt;
+
+julia&gt; IsWellDefined( ϕ )
+true
+
+julia&gt; IsMonomorphism( ϕ )
+false
+
+julia&gt; IsEpimorphism( ϕ )
+false
+
+julia&gt; ι = ImageEmbedding( ϕ )
+GAP: &lt;A monomorphism in The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ])&gt;
+
+julia&gt; IsMonomorphism( ι )
+true
+
+julia&gt; IsIsomorphism( ι )
+false
+
+julia&gt; coker_mod = CokernelObject( ϕ )
+GAP: &lt;An object in The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ])&gt;
+
+julia&gt; Display( coker_mod )
+x,
+y
+(over a graded ring)
+
+An object in The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ])
+
+(graded, degree of generator:[ 0 ])
+
+julia&gt; IsZero( coker_mod )
+false
+
+julia&gt; is_artinian = julia_to_gap( M -&gt; AffineDimension( M ) &lt;= 0 );
+
+julia&gt; SetNameFunction( is_artinian, g&quot;is_artinian&quot; )
+
+julia&gt; C = FullSubcategoryByMembershipFunction( Sgrmod, is_artinian )
+GAP: &lt;Subcategory of The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ]) by is_artinian&gt;
+
+julia&gt; CohP1 = Sgrmod / C
+GAP: The Serre quotient category of The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ]) by test function with name: is_artinian
+
+julia&gt; InfoOfInstalledOperationsOfCategory( CohP1 )
+21 primitive operations were used to derive 144 operations for this category which
+* IsAbCategory
+* IsAbelianCategory
+
+julia&gt; Sh = CanonicalProjection( CohP1 )
+GAP: Localization functor of The Serre quotient category of The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ]) by test function with name: is_artinian
+
+julia&gt; InstallFunctor( Sh, g&quot;Sheafification&quot; )
+
+julia&gt; ψ = ApplyFunctor( Sh, ϕ )
+GAP: &lt;A morphism in The Serre quotient category of The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ]) by test function with name: is_artinian&gt;
+
+julia&gt; IsMonomorphism( ψ )
+false
+
+julia&gt; IsEpimorphism( ψ )
+true
+
+julia&gt; coker_shv = CokernelObject( ψ )
+GAP: &lt;A zero object in The Serre quotient category of The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ]) by test function with name: is_artinian&gt;
+
+julia&gt; IsZero( coker_shv )
+true
+
+julia&gt; ϵ = ApplyFunctor( Sh, ι )
+GAP: &lt;A morphism in The Serre quotient category of The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ]) by test function with name: is_artinian&gt;
+
+julia&gt; IsIsomorphism( ϵ )
+true
+</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.3 on <span class="colophon-date" title="Wednesday 7 July 2021 10:40">Wednesday 7 July 2021</span>. Using Julia version 1.4.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
