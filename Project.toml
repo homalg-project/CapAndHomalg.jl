@@ -1,7 +1,7 @@
 name = "CapAndHomalg"
 uuid = "c4774649-1891-41ea-a883-87141804c57c"
 authors = ["Mohamed Barakat <mohamed.barakat@uni-siegen.de>"]
-version = "1.1.5"
+version = "1.1.6"
 
 [deps]
 GAP = "c863536a-3901-11e9-33e7-d5cd0df7b904"
