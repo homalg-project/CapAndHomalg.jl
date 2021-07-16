@@ -198,8 +198,8 @@ function __init__()
 
     UseSystemSingular(false)
 
-    if haskey(ENV, "CAP_AND_HOMALG_SHOW_BANNER")
-        show_banner = ENV["CAP_AND_HOMALG_SHOW_BANNER"] == "true"
+    if haskey(ENV, "CAP_AND_HOMALG_PRINT_BANNER")
+        show_banner = ENV["CAP_AND_HOMALG_PRINT_BANNER"] == "true"
     else
         show_banner =
             isinteractive() && !any(x -> x.name in ["Oscar", "HomalgProject"], keys(Base.package_locks))
