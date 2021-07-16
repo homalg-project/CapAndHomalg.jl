@@ -270,7 +270,7 @@ julia> Sgrmod = GradedLeftPresentations( S )
 GAP: The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ])
 
 julia> InfoOfInstalledOperationsOfCategory( Sgrmod )
-40 primitive operations were used to derive 179 operations for this category which
+40 primitive operations were used to derive 172 operations for this category which
 * IsAbCategory
 * IsMonoidalCategory
 * IsAbelianCategoryWithEnoughProjectives
