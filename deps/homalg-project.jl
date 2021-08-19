@@ -27,27 +27,18 @@ On success return `true` and on failure `false`.
 """
 function DownloadPackageFromHomalgProject(pkgname)
 
-    res = GAP.Globals.LoadPackage(GapObj("PackageManager"), false)
-    @assert res
-    git = GapObj("git")
-    clone = GapObj("clone")
-
     dir = joinpath(PKG_DIR, pkgname)
 
     if isdir(dir)
         return true
     end
 
-    @info "Cloning into \"" * dir * "\""
-    pkgname = GapObj("https://github.com/homalg-project/" * pkgname)
-    pkgname =
-        GAP.Globals.PKGMAN_Exec(GapObj("."), git, clone, pkgname, GapObj(dir))
-
-    if pkgname.code != 0
-        @warn "Cloning failed:\n" * String(pkgname.output)
+    @info "Cloning into \"$(dir)\""
+    try
+        run(`git clone https://github.com/homalg-project/$pkgname $dir`)
+    catch
         return false
     end
-
     return true
 
 end
@@ -66,27 +57,20 @@ On success return `true` and on failure `false`.
 """
 function UpdatePackageFromHomalgProject(pkgname)
 
-    res = GAP.Globals.LoadPackage(GapObj("PackageManager"), false)
-    @assert res
-    git = GapObj("git")
-    pull = GapObj("pull")
-
     dir = joinpath(PKG_DIR, pkgname)
 
     if !isdir(dir)
         return DownloadPackageFromHomalgProject(pkgname)
     end
 
-    @info "Updating \"" * dir * "\""
-    pkgname =
-        GAP.Globals.PKGMAN_Exec(GapObj(dir), git, pull, GapObj("--ff-only"))
-
-    if pkgname.code != 0
-        @warn "Updating failed:\n" * String(pkgname.output)
+    @info "Updating \"$(dir)\""
+    try
+        cd(dir) do
+            run(`git pull --ff-only`)
+        end
+    catch
         return false
     end
-
-    @info String(pkgname.output)
     return true
 
 end
@@ -103,25 +87,18 @@ Removing a repository and re-downloading it might be useful if udpating it fails
 """
 function RemovePackageFromHomalgProject(pkgname)
 
-    res = GAP.Globals.LoadPackage(GapObj("PackageManager"), false)
-    @assert res
-    rm = GapObj("rm")
-    opt = GapObj("-rf")
-
     dir = joinpath(PKG_DIR, pkgname)
 
     if !isdir(dir)
         return false
     end
 
-    @info "Removing \"" * dir * "\""
-    pkgname = GAP.Globals.PKGMAN_Exec(GapObj("."), rm, opt, GapObj(dir))
-
-    if pkgname.code != 0
-        @warn "Remving failed:\n" * String(pkgname.output)
+    @info "Removing \"$(dir)\""
+    try
+        rm(dir, force=true, recursive=true)
+    catch
         return false
     end
-
     return true
 
 end
