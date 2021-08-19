@@ -5,27 +5,27 @@ end
 export LoadPackage
 
 function HomalgMatrix(M::Any, m::Int64, n::Int64, R::GAP.GapObj)
-    return GAP.Globals.HomalgMatrix(GAP.Globals.ConvertJuliaToGAP(M), m, n, R)
+    return GAP.Globals.HomalgMatrix(GapObj(M, recursive=true), m, n, R)
 end
 
 function HomalgMatrix(M::Any, R::GAP.GapObj)
-    return GAP.Globals.HomalgMatrix(GAP.Globals.ConvertJuliaToGAP(M), R)
+    return GAP.Globals.HomalgMatrix(GapObj(M, recursive=true), R)
 end
 
 export HomalgMatrix
 
 function RepresentationCategoryObject(char::GAP.GapObj, category::GAP.GapObj, name::String)
-    return GAP.Globals.RepresentationCategoryObject(char, category, julia_to_gap(name))
+    return GAP.Globals.RepresentationCategoryObject(char, category, GapObj(name))
 end
 
 export RepresentationCategoryObject
 
 function SizeScreen()
-    return gap_to_julia(GAP.Globals.SizeScreen())
+    return Vector{Int}(GAP.Globals.SizeScreen())
 end
 
 function SizeScreen(L::Array)
-    return gap_to_julia(GAP.Globals.SizeScreen(julia_to_gap(L)))
+    return Vector{Int}(GAP.Globals.SizeScreen(GapObj(L)))
 end
 
 export SizeScreen

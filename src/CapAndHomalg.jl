@@ -67,19 +67,19 @@ include(joinpath("..", "deps", "homalg-project.jl"))
 import Pkg
 import Markdown
 
-Base.:*(x::GAP.GapObj, y::String) = x * julia_to_gap(y)
-Base.getindex(x::GAP.GapObj, y::String) = GAP.Globals.ELM_LIST(x, julia_to_gap(y))
+Base.:*(x::GAP.GapObj, y::String) = x * GapObj(y)
+Base.getindex(x::GAP.GapObj, y::String) = GAP.Globals.ELM_LIST(x, GapObj(y))
 Base.getindex(x::GAP.GapObj, y::GAP.GapObj) = GAP.Globals.ELM_LIST(x, y)
-Base.:/(x::Any, y::GAP.GapObj) = GAP.Globals.QUO(GAP.Globals.ConvertJuliaToGAP(x), y)
-Base.:/(x::GAP.GapObj, y::Array{GAP.GapObj,1}) = GAP.Globals.QUO(x, julia_to_gap(y))
-Base.:/(x::GAP.GapObj, y::Array) = GAP.Globals.QUO(x, GAP.Globals.ConvertJuliaToGAP(y))
+Base.:/(x::Any, y::GAP.GapObj) = GAP.Globals.QUO(GapObj(x, recursive=true), y)
+Base.:/(x::GAP.GapObj, y::Array{GAP.GapObj,1}) = GAP.Globals.QUO(x, GapObj(y))
+Base.:/(x::GAP.GapObj, y::Array) = GAP.Globals.QUO(x, GapObj(y, recursive=true))
 
 function Base.showable(mime::MIME, obj::GapObj)
-    return GAP.Globals.IsShowable(julia_to_gap(string(mime)), obj)
+    return GAP.Globals.IsShowable(GapObj(string(mime)), obj)
 end
 
-Base.show(io::IO, ::MIME"application/x-latex", obj::GapObj) = print(io, string("\$\$", gap_to_julia(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
-Base.show(io::IO, ::MIME"text/latex", obj::GapObj) = print(io, string("\$\$", gap_to_julia(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
+Base.show(io::IO, ::MIME"application/x-latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
+Base.show(io::IO, ::MIME"text/latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
 
 ## Convenience
 include("conversions.jl")
@@ -105,13 +105,13 @@ function UseSystemSingular(bool::Bool)
 
     if bool == false
 
-        if gap_to_julia(GAP.Globals.GAPInfo.DirectoriesSystemPrograms[1]) == SINGULAR_BINARY_PATHS[1]
+        if String(GAP.Globals.GAPInfo.DirectoriesSystemPrograms[1]) == SINGULAR_BINARY_PATHS[1]
             return true
         end
 
         ## add binary paths to GAPInfo.DirectoriesSystemPrograms
         paths = GAP.Globals.Concatenation(
-            julia_to_gap(map(julia_to_gap, SINGULAR_BINARY_PATHS)),
+            GapObj(map(GapObj, SINGULAR_BINARY_PATHS)),
             GAP.Globals.GAPInfo.DirectoriesSystemPrograms
         )
         paths = GAP.Globals.Unique(paths)
@@ -124,14 +124,14 @@ function UseSystemSingular(bool::Bool)
         ## add library pathes to LD_LIBRARY_PATH and DYLD_LIBRARY_PATH in HOMALG_IO_Singular.environment
         lib = join(SINGULAR_LIBRARY_PATHS, ":")
         GAP.Globals.HOMALG_IO_Singular.environment =
-            julia_to_gap([julia_to_gap("LD_LIBRARY_PATH=" * lib * ":\$LD_LIBRARY_PATH"),
-                          julia_to_gap("DYLD_LIBRARY_PATH=" * lib * ":\$DYLD_LIBRARY_PATH")])
+            GapObj([GapObj("LD_LIBRARY_PATH=$lib:\$LD_LIBRARY_PATH"),
+                    GapObj("DYLD_LIBRARY_PATH=$lib:\$DYLD_LIBRARY_PATH")])
 
         return true
 
     end
 
-    if gap_to_julia(GAP.Globals.GAPInfo.DirectoriesSystemPrograms[1]) != SINGULAR_BINARY_PATHS[1]
+    if String(GAP.Globals.GAPInfo.DirectoriesSystemPrograms[1]) != SINGULAR_BINARY_PATHS[1]
         return true
     end
 
@@ -140,7 +140,7 @@ function UseSystemSingular(bool::Bool)
         GAP.Globals.Remove(GAP.Globals.GAPInfo.DirectoriesPrograms, 1)
     end
 
-    GAP.Globals.HOMALG_IO_Singular.environment = julia_to_gap([])
+    GAP.Globals.HOMALG_IO_Singular.environment = GapObj([])
 
     return true
 
@@ -158,24 +158,24 @@ function __init__()
     DownloadPackageFromHomalgProject("CAP_project")
 
     ## Read( "Tools.g" )
-    path = julia_to_gap(joinpath(CAP_AND_HOMALG_PATH, "src", "Tools.g"))
+    path = GapObj(joinpath(CAP_AND_HOMALG_PATH, "src", "Tools.g"))
     GAP.Globals.Read(path)
 
     ## add "~/.gap/" at the end of GAPInfo.RootPaths
-    GAP.Globals.ExtendRootDirectories(julia_to_gap([GAP.Globals.UserHomeExpand(julia_to_gap("~/.gap/"))]))
+    GAP.Globals.ExtendRootDirectories(GapObj([GAP.Globals.UserHomeExpand(GapObj("~/.gap/"))]))
 
     ## add "~/.julia/.../CapAndHomalg/" at the beginning of GAPInfo.RootPaths
-    GAP.Globals.EnhanceRootDirectories(julia_to_gap([julia_to_gap(
+    GAP.Globals.EnhanceRootDirectories(GapObj([GapObj(
         CAP_AND_HOMALG_PATH * "/",
     )]))
 
-    if GAP.Globals.TestPackageAvailability(julia_to_gap("io")) == GAP.Globals.fail
+    if GAP.Globals.TestPackageAvailability(GapObj("io")) == GAP.Globals.fail
         GAP.Packages.install("io")
     end
 
     ## add binary paths to GAPInfo.DirectoriesSystemPrograms
     paths = GAP.Globals.Concatenation(
-        julia_to_gap(map(julia_to_gap, HOMALG_PATHS)),
+        GapObj(map(GapObj, HOMALG_PATHS)),
         GAP.Globals.GAPInfo.DirectoriesSystemPrograms
     )
     paths = GAP.Globals.Unique(paths)

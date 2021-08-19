@@ -1,10 +1,10 @@
 global CAP_AND_HOMALG_PATH = dirname(@__DIR__)
 
 import GAP
-import GAP: julia_to_gap, gap_to_julia, @g_str, @gap, GapObj
+import GAP: @g_str, @gap, GapObj
 
 export GAP
-export julia_to_gap, gap_to_julia, @g_str, @gap, GapObj
+export @g_str, @gap, GapObj
 
 """
     CapAndHomalg.PKG_DIR
@@ -27,10 +27,10 @@ On success return `true` and on failure `false`.
 """
 function DownloadPackageFromHomalgProject(pkgname)
 
-    res = GAP.Globals.LoadPackage(julia_to_gap("PackageManager"), false)
+    res = GAP.Globals.LoadPackage(GapObj("PackageManager"), false)
     @assert res
-    git = julia_to_gap("git")
-    clone = julia_to_gap("clone")
+    git = GapObj("git")
+    clone = GapObj("clone")
 
     dir = joinpath(PKG_DIR, pkgname)
 
@@ -39,12 +39,12 @@ function DownloadPackageFromHomalgProject(pkgname)
     end
 
     @info "Cloning into \"" * dir * "\""
-    pkgname = julia_to_gap("https://github.com/homalg-project/" * pkgname)
+    pkgname = GapObj("https://github.com/homalg-project/" * pkgname)
     pkgname =
-        GAP.Globals.PKGMAN_Exec(julia_to_gap("."), git, clone, pkgname, julia_to_gap(dir))
+        GAP.Globals.PKGMAN_Exec(GapObj("."), git, clone, pkgname, GapObj(dir))
 
     if pkgname.code != 0
-        @warn "Cloning failed:\n" * gap_to_julia(pkgname.output)
+        @warn "Cloning failed:\n" * String(pkgname.output)
         return false
     end
 
@@ -66,10 +66,10 @@ On success return `true` and on failure `false`.
 """
 function UpdatePackageFromHomalgProject(pkgname)
 
-    res = GAP.Globals.LoadPackage(julia_to_gap("PackageManager"), false)
+    res = GAP.Globals.LoadPackage(GapObj("PackageManager"), false)
     @assert res
-    git = julia_to_gap("git")
-    pull = julia_to_gap("pull")
+    git = GapObj("git")
+    pull = GapObj("pull")
 
     dir = joinpath(PKG_DIR, pkgname)
 
@@ -79,14 +79,14 @@ function UpdatePackageFromHomalgProject(pkgname)
 
     @info "Updating \"" * dir * "\""
     pkgname =
-        GAP.Globals.PKGMAN_Exec(julia_to_gap(dir), git, pull, julia_to_gap("--ff-only"))
+        GAP.Globals.PKGMAN_Exec(GapObj(dir), git, pull, GapObj("--ff-only"))
 
     if pkgname.code != 0
-        @warn "Updating failed:\n" * gap_to_julia(pkgname.output)
+        @warn "Updating failed:\n" * String(pkgname.output)
         return false
     end
 
-    @info gap_to_julia(pkgname.output)
+    @info String(pkgname.output)
     return true
 
 end
@@ -103,10 +103,10 @@ Removing a repository and re-downloading it might be useful if udpating it fails
 """
 function RemovePackageFromHomalgProject(pkgname)
 
-    res = GAP.Globals.LoadPackage(julia_to_gap("PackageManager"), false)
+    res = GAP.Globals.LoadPackage(GapObj("PackageManager"), false)
     @assert res
-    rm = julia_to_gap("rm")
-    opt = julia_to_gap("-rf")
+    rm = GapObj("rm")
+    opt = GapObj("-rf")
 
     dir = joinpath(PKG_DIR, pkgname)
 
@@ -115,10 +115,10 @@ function RemovePackageFromHomalgProject(pkgname)
     end
 
     @info "Removing \"" * dir * "\""
-    pkgname = GAP.Globals.PKGMAN_Exec(julia_to_gap("."), rm, opt, julia_to_gap(dir))
+    pkgname = GAP.Globals.PKGMAN_Exec(GapObj("."), rm, opt, GapObj(dir))
 
     if pkgname.code != 0
-        @warn "Remving failed:\n" * gap_to_julia(pkgname.output)
+        @warn "Remving failed:\n" * String(pkgname.output)
         return false
     end
 
@@ -302,11 +302,11 @@ Apply [`GAP.Packages.install`] to all packages listed
 in [`PACKAGES_TO_COMPILE`](@ref).
 """
 function CompilePackagesForHomalgProject()
-    
+
     for pkg in PACKAGES_TO_COMPILE
         GAP.Packages.install(pkg, interactive = false)
     end
-    
+
 end
 
 export CompilePackagesForHomalgProject

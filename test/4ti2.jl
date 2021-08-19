@@ -3,8 +3,8 @@
     cone = [[5, -1], [0, 1]]
     basis = lib4ti2_hilbert_inequalities(cone)
     GAP.Globals.Sort(basis)
-    @test basis == ConvertJuliaToGAP([[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5]])
-    @test basis == ConvertJuliaToGAP(basis)
+    @test basis == GapObj([[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5]]; recursive = true)
+    @test Vector{Vector{Int}}(basis) == [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5]]
     groebner = lib4ti2_groebner_matrix(basis)
     GAP.Globals.Sort(groebner)
     @test GAP.Globals.Length(groebner) == 10
