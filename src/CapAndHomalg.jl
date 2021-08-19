@@ -214,6 +214,7 @@ function __init__()
         println("Type: ?CapAndHomalg for more information")
     end
 
+    SizeScreen(SIZE_SCREEN_ORIGINAL)
 end
 
 """
