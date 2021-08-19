@@ -327,7 +327,7 @@ An object in The category of graded left f.p. modules over Q[x,y] (with weights 
 julia> IsZero( coker_mod )
 false
 
-julia> is_artinian = julia_to_gap( M -> AffineDimension( M ) <= 0 );
+julia> is_artinian = GapObj( M -> AffineDimension( M ) <= 0 );
 
 julia> SetNameFunction( is_artinian, g"is_artinian" )
 
