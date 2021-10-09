@@ -44,13 +44,14 @@ function regenerate_Graphviz_wrapper(binpath, wrapperpath)
         LIBPATH_env = "LD_LIBRARY_PATH"
     end
 
-    function force_symlink(p::AbstractString, np::AbstractString)
-        rm(np; force = true)
-        symlink(p, np)
-    end
-
-    for tool in [ "dot" ]
-        force_symlink(joinpath(binpath, tool), joinpath(wrapperpath, tool))
+    for tool in ("dot", )
+        toolpath = joinpath(wrapperpath, tool)
+        write(toolpath, """
+        #!/bin/sh
+        export $(LIBPATH_env)="$(Graphviz_jll.LIBPATH)"
+        $(binpath)/$(tool) "\$@"
+        """)
+        chmod(toolpath, 0o777)
     end
 
 end
