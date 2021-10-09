@@ -227,7 +227,7 @@ if VERSION >= v"1.4"
     if Base.haskey(deps, Base.UUID("c4774649-1891-41ea-a883-87141804c57c"))
         ver = Pkg.dependencies()[Base.UUID("c4774649-1891-41ea-a883-87141804c57c")]
         if occursin("/dev/", ver.source)
-            version = VersionNumber("$(ver.version)-dev")
+            version = VersionNumber("$(ver.version)")
         else
             version = VersionNumber("$(ver.version)")
         end
