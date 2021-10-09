@@ -67,12 +67,12 @@ include(joinpath("..", "deps", "homalg-project.jl"))
 import Pkg
 import Markdown
 
-Base.:*(x::GAP.GapObj, y::String) = x * GapObj(y)
-Base.getindex(x::GAP.GapObj, y::String) = GAP.Globals.ELM_LIST(x, GapObj(y))
-Base.getindex(x::GAP.GapObj, y::GAP.GapObj) = GAP.Globals.ELM_LIST(x, y)
-Base.:/(x::Any, y::GAP.GapObj) = GAP.Globals.QUO(GapObj(x, recursive=true), y)
-Base.:/(x::GAP.GapObj, y::Array{GAP.GapObj,1}) = GAP.Globals.QUO(x, GapObj(y))
-Base.:/(x::GAP.GapObj, y::Array) = GAP.Globals.QUO(x, GapObj(y, recursive=true))
+Base.:*(x::GapObj, y::String) = x * GapObj(y)
+Base.getindex(x::GapObj, y::String) = GAP.Globals.ELM_LIST(x, GapObj(y))
+Base.getindex(x::GapObj, y::GapObj) = GAP.Globals.ELM_LIST(x, y)
+Base.:/(x::Any, y::GapObj) = GAP.Globals.QUO(GapObj(x, recursive=true), y)
+Base.:/(x::GapObj, y::Array{GapObj,1}) = GAP.Globals.QUO(x, GapObj(y))
+Base.:/(x::GapObj, y::Array) = GAP.Globals.QUO(x, GapObj(y, recursive=true))
 
 function Base.showable(mime::MIME, obj::GapObj)
     return GAP.Globals.IsShowable(GapObj(string(mime)), obj)
@@ -184,6 +184,8 @@ function __init__()
         GAP.Globals.GAPInfo.DirectoriesSystemPrograms,
         GAP.Globals.Directory
     )
+
+    LoadPackageAndExposeGlobals("", load = false)
 
     ## needed by the variable HOMALG_IO_Singular below
     LoadPackage("RingsForHomalg")
