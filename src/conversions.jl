@@ -1,3 +1,7 @@
+global EXPORTED_GAP_GLOBALS = Symbol[]
+
+export EXPORTED_GAP_GLOBALS
+
 function LoadPackageAndExposeGlobals(pkgname::String; load::Bool=true)
     old_gvar_list = GAP.Globals.ShallowCopy(GAP.Globals.NamesGVars())
 
@@ -17,6 +21,7 @@ function LoadPackageAndExposeGlobals(pkgname::String; load::Bool=true)
             try
                 CapAndHomalg.eval(:($(sym) = GAP.Globals.$(sym)))
                 CapAndHomalg.eval(:(export $(sym)))
+                push!(EXPORTED_GAP_GLOBALS, sym)
             catch
             end
         end
