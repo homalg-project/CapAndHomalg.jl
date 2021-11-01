@@ -1,3 +1,7 @@
+global EXPORTED_GAP_GLOBALS = Symbol[]
+
+export EXPORTED_GAP_GLOBALS
+
 function LoadPackageAndExposeGlobals(pkgname::String; load::Bool=true)
     old_gvar_list = GAP.Globals.ShallowCopy(GAP.Globals.NamesGVars())
 
@@ -17,6 +21,7 @@ function LoadPackageAndExposeGlobals(pkgname::String; load::Bool=true)
             try
                 CapAndHomalg.eval(:($(sym) = GAP.Globals.$(sym)))
                 CapAndHomalg.eval(:(export $(sym)))
+                push!(EXPORTED_GAP_GLOBALS, sym)
             catch
             end
         end
@@ -28,6 +33,28 @@ function LoadPackage(pkgname::String)
 end
 
 export LoadPackage
+
+## for use in other Julia packages
+function LoadPackageAndExposeGlobals(pkgname::String, modulename::Module)
+    LoadPackageAndExposeGlobals(pkgname)
+
+    if !isdefined(modulename, :number_of_last_exported_gap_global_variable)
+        modulename.eval(:(number_of_last_exported_gap_global_variable = 0))
+    end
+
+    for i in (modulename.number_of_last_exported_gap_global_variable + 1):length(EXPORTED_GAP_GLOBALS)
+        sym = EXPORTED_GAP_GLOBALS[i]
+        if !isdefined(modulename, sym)
+            try
+                modulename.eval(:($(sym) = GAP.Globals.$(sym)))
+                modulename.eval(:(export $(sym)))
+            catch
+            end
+        end
+    end
+    modulename.eval(:(number_of_last_exported_gap_global_variable = $(length(EXPORTED_GAP_GLOBALS))))
+    nothing
+end
 
 function HomalgMatrix(M::Any, m::Int64, n::Int64, R::GapObj)
     return GAP.Globals.HomalgMatrix(GapObj(M, recursive=true), m, n, R)
