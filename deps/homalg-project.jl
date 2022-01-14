@@ -83,7 +83,7 @@ export UpdatePackageFromHomalgProject
 Delete the repository named `pkgname` from the subdirectory
 [`CapAndHomalg.PKG_DIR`](@ref).
 On success return `true` and on failure `false`.
-Removing a repository and re-downloading it might be useful if udpating it fails.
+Removing a repository and re-downloading it might be useful if updating it fails.
 """
 function RemovePackageFromHomalgProject(pkgname)
 
@@ -175,7 +175,7 @@ global PACKAGES_TO_DOWNLOAD = vcat(PACKAGES_BASED_ON_HOMALG, PACKAGES_BASED_ON_C
 """
     CapAndHomalg.PACKAGES_DEPRECATED
 
-List of packages deprecated packages.
+List of deprecated packages.
 """
 global PACKAGES_DEPRECATED = [
     "BBGG",
