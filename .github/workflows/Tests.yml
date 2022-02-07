@@ -7,8 +7,8 @@ on:
   pull_request:
     branches:
       - "*"
-  #schedule:
-  #    - cron: '0 0 * * *' ## daily
+  schedule:
+      - cron: '0 0 * * *' ## daily
 
 jobs:
   test:
@@ -31,6 +31,7 @@ jobs:
       JULIA_TRACK_COVERAGE: yes
 
     steps:
+      - run: '[ "$GITHUB_EVENT_NAME" = "pull_request" ] || curl --fail -X PUT -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/Tests.yml/enable'
       - uses: actions/checkout@v2
 
       - name: Setup Julia environment
