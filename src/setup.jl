@@ -67,13 +67,17 @@ end
 
 const wrapperpath = joinpath(dirname(@__DIR__), "bin", "v$(VERSION.major).$(VERSION.minor)")
 
-@info "Regenerating 4ti2 wrappers in $(wrapperpath)"
 import lib4ti2_jll
-regenerate_4ti2_wrapper(joinpath(lib4ti2_jll.artifact_dir, "bin"), wrapperpath)
+if lib4ti2_jll.is_available()
+    @info "Regenerating 4ti2 wrappers in $(wrapperpath)"
+    regenerate_4ti2_wrapper(joinpath(lib4ti2_jll.artifact_dir, "bin"), wrapperpath)
+end
 
-@info "Regenerating Graphviz wrappers in $(wrapperpath)"
 import Graphviz_jll
-regenerate_Graphviz_wrapper(joinpath(Graphviz_jll.artifact_dir, "bin"), wrapperpath)
+if Graphviz_jll.is_available()
+    @info "Regenerating Graphviz wrappers in $(wrapperpath)"
+    regenerate_Graphviz_wrapper(joinpath(Graphviz_jll.artifact_dir, "bin"), wrapperpath)
+end
 
 # make sure CapAndHomalg can find the wrappers
 function __init__()
