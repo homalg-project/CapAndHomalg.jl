@@ -81,6 +81,8 @@ end
 Base.show(io::IO, ::MIME"application/x-latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
 Base.show(io::IO, ::MIME"text/latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
 
+Base.show(io::IO, ::MIME"image/svg+xml", obj::GapObj) = print(io, String(GAP.Globals.SvgString(obj)))
+
 ## Convenience
 include("conversions.jl")
 
