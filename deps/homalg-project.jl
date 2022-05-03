@@ -147,7 +147,6 @@ global PACKAGES_BASED_ON_CAP = [
     "QPA2",
     "SubcategoriesForCAP",
     "Toposes",
-    "WrapperCategories",
     "ZariskiFrames",
 ]
 
@@ -189,6 +188,7 @@ global PACKAGES_DEPRECATED = [
     "QuotientCategories",
     "StableCategories",
     "TriangulatedCategories",
+    "WrapperCategories",
 ]
 
 """
