@@ -67,21 +67,21 @@ include(joinpath("..", "deps", "homalg-project.jl"))
 import Pkg
 import Markdown
 
-Base.:*(x::GapObj, y::String) = x * GapObj(y)
-Base.getindex(x::GapObj, y::String) = GAP.Globals.ELM_LIST(x, GapObj(y))
-Base.getindex(x::GapObj, y::GapObj) = GAP.Globals.ELM_LIST(x, y)
-Base.:/(x::Any, y::GapObj) = GAP.Globals.QUO(GapObj(x, recursive=true), y)
-Base.:/(x::GapObj, y::Array{GapObj,1}) = GAP.Globals.QUO(x, GapObj(y))
-Base.:/(x::GapObj, y::Array) = GAP.Globals.QUO(x, GapObj(y, recursive=true))
+CapAndHomalg.:*(x::GapObj, y::String) = x * GapObj(y)
+CapAndHomalg.getindex(x::GapObj, y::String) = GAP.Globals.ELM_LIST(x, GapObj(y))
+CapAndHomalg.getindex(x::GapObj, y::GapObj) = GAP.Globals.ELM_LIST(x, y)
+CapAndHomalg.:/(x::Any, y::GapObj) = GAP.Globals.QUO(GapObj(x, recursive=true), y)
+CapAndHomalg.:/(x::GapObj, y::Array{GapObj,1}) = GAP.Globals.QUO(x, GapObj(y))
+CapAndHomalg.:/(x::GapObj, y::Array) = GAP.Globals.QUO(x, GapObj(y, recursive=true))
 
-function Base.showable(mime::MIME, obj::GapObj)
+function CapAndHomalg.showable(mime::MIME, obj::GapObj)
     return GAP.Globals.IsShowable(GapObj(string(mime)), obj)
 end
 
-Base.show(io::IO, ::MIME"application/x-latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
-Base.show(io::IO, ::MIME"text/latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
+CapAndHomalg.show(io::IO, ::MIME"application/x-latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
+CapAndHomalg.show(io::IO, ::MIME"text/latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
 
-Base.show(io::IO, ::MIME"image/svg+xml", obj::GapObj) = print(io, String(GAP.Globals.SvgString(obj)))
+CapAndHomalg.show(io::IO, ::MIME"image/svg+xml", obj::GapObj) = print(io, String(GAP.Globals.SvgString(obj)))
 
 ## Convenience
 include("conversions.jl")
