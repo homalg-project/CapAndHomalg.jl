@@ -48,7 +48,7 @@ function regenerate_Graphviz_wrapper(binpath, wrapperpath)
         toolpath = joinpath(wrapperpath, tool)
         write(toolpath, """
         #!/bin/sh
-        export $(LIBPATH_env)="$(Graphviz_jll.LIBPATH)"
+        export $(LIBPATH_env)="$(join(reverse(Graphviz_jll.LIBPATH_list),":"))"
         $(binpath)/$(tool) "\$@"
         """)
         chmod(toolpath, 0o777)
