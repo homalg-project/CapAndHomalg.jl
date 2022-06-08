@@ -33,10 +33,10 @@ Some of the bundled packages use the GAP packages
 
 and the
 
-| third party software | through the GAP packages |
-|:--------------------:|:------------------------:|
-| Graphviz_jll         | Digraphs                 |
-| 4ti2_jll             | 4ti2Interface            |
+| third party software | through the GAP packages                    |
+|:--------------------:|:-------------------------------------------:|
+| Graphviz_jll         | dot-format generating code like in Digraphs |
+| 4ti2_jll             | 4ti2Interface                               |
 
 ## General Disclaimer
 
