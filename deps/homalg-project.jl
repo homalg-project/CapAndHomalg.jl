@@ -264,14 +264,16 @@ downloaded (once) and installed by `GAP.Packages.install` when
 called once `GAP.jl` gets updated.
 """
 global PACKAGES_TO_COMPILE = [
+    "AutoDoc",
     "Gauss",
     #"Browse", ## do not compile browse as it results into GAP raising the error "Error opening terminal: xterm-256color."
     "io",
     "grape",
-    "https://digraphs.github.io/Digraphs/PackageInfo.g",
+    "digraphs",
     "ferret",
     "json",
     "orb",
+    "repsn",
 ]
 
 """
