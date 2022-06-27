@@ -168,6 +168,7 @@ global PACKAGES_NEEDED = [
 List of packages which will be considered by
 * [`DownloadAllPackagesFromHomalgProject`](@ref)()
 * [`UpdateAllPackagesFromHomalgProject`](@ref)()
+* [`UpdateAllPackagesFromHomalgProjectInParallel`](@ref)()
 * [`RemoveAllPackagesFromHomalgProject`](@ref)()
 """
 global PACKAGES_TO_DOWNLOAD = vcat(PACKAGES_BASED_ON_HOMALG, PACKAGES_BASED_ON_CAP, PACKAGES_BASED_ON_TORIC_VARIETIES, PACKAGES_NEEDED)
@@ -221,6 +222,23 @@ function UpdateAllPackagesFromHomalgProject()
 end
 
 export UpdateAllPackagesFromHomalgProject
+
+"""
+    UpdateAllPackagesFromHomalgProjectInParallel()
+
+Apply [`UpdatePackageFromHomalgProject`](@ref) to all packages listed
+in [`PACKAGES_TO_DOWNLOAD`](@ref) in parallel. The output of the git
+commands might get intertwined.
+"""
+function UpdateAllPackagesFromHomalgProjectInParallel()
+
+    @sync for pkg in PACKAGES_TO_DOWNLOAD
+        @async UpdatePackageFromHomalgProject(pkg)
+    end
+
+end
+
+export UpdateAllPackagesFromHomalgProjectInParallel
 
 """
     RemoveAllPackagesFromHomalgProject()
