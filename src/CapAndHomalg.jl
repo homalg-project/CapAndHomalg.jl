@@ -78,8 +78,8 @@ function Base.showable(mime::MIME, obj::GapObj)
     return GAP.Globals.IsShowable(GapObj(string(mime)), obj)
 end
 
-Base.show(io::IO, ::MIME"application/x-latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
-Base.show(io::IO, ::MIME"text/latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXStringOp(obj))), "\$\$")
+Base.show(io::IO, ::MIME"application/x-latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXOutput(obj))), "\$\$")
+Base.show(io::IO, ::MIME"text/latex", obj::GapObj) = print(io, string("\$\$", String(GAP.Globals.LaTeXOutput(obj))), "\$\$")
 
 Base.show(io::IO, ::MIME"image/svg+xml", obj::GapObj) = print(io, String(GAP.Globals.SvgString(obj)))
 
