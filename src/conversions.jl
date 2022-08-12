@@ -86,3 +86,16 @@ export SizeScreen
 global SIZE_SCREEN_ORIGINAL = SizeScreen()
 
 export SIZE_SCREEN_ORIGINAL
+
+## Max' code suggestion for overwriting GAP's standard Display method
+function Display(obj::GapObj)
+    return print(String(GAP.Globals.StringDisplayObj(obj)))
+end
+
+export Display
+
+function InfoOfInstalledOperationsOfCategory(obj::GapObj)
+    Display(InfoStringOfInstalledOperationsOfCategory(obj))
+end
+
+export InfoOfInstalledOperationsOfCategory

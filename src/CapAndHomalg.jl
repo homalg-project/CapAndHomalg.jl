@@ -192,8 +192,6 @@ function __init__()
     ## needed by the variable HOMALG_IO_Singular below
     LoadPackage("RingsForHomalg")
 
-    SizeScreen( [ 2^12 ] )
-
     ## loading IO_ForHomalg now suppresses its banner later
     LoadPackage("IO_ForHomalg")
 
