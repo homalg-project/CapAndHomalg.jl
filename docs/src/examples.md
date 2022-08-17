@@ -238,7 +238,7 @@ julia> Sgrmod = GradedLeftPresentations( S )
 GAP: The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ])
 
 julia> InfoOfInstalledOperationsOfCategory( Sgrmod )
-40 primitive operations were used to derive 290 operations for this category which constructively
+40 primitive operations were used to derive 292 operations for this category which constructively
 * IsMonoidalCategory
 * IsAbelianCategoryWithEnoughProjectives
 
@@ -305,7 +305,7 @@ julia> CohP1 = Sgrmod / C
 GAP: The Serre quotient category of The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ]) by test function with name: is_artinian
 
 julia> InfoOfInstalledOperationsOfCategory( CohP1 )
-21 primitive operations were used to derive 241 operations for this category which constructively
+21 primitive operations were used to derive 243 operations for this category which constructively
 * IsAbelianCategory
 
 julia> Sh = CanonicalProjection( CohP1 )
