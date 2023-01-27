@@ -131,6 +131,7 @@ global PACKAGES_BASED_ON_CAP = [
     "Algebroids",
     "CategoryConstructor",
     "CategoriesWithAmbientObjects",
+    "CategoricalTowers",
     "CatReps",
     "ExteriorPowersCategories",
     "FinSetsForCAP",
