@@ -128,27 +128,11 @@ global PACKAGES_BASED_ON_HOMALG = [
 global PACKAGES_BASED_ON_CAP = [
     "CAP_project",
     ##
-    "Algebroids",
-    "CategoryConstructor",
-    "CategoriesWithAmbientObjects",
     "CategoricalTowers",
-    "CatReps",
-    "ExteriorPowersCategories",
     "FinSetsForCAP",
     "FinGSetsForCAP",
-    "FunctorCategories",
-    "GradedCategories",
     "HigherHomologicalAlgebra",
-    "InternalModules",
-    "IntrinsicCategories",
-    "IntrinsicGradedModules",
-    "IntrinsicModules",
-    "LazyCategories",
-    "Locales",
     "QPA2",
-    "SubcategoriesForCAP",
-    "Toposes",
-    "ZariskiFrames",
 ]
 
 ##
@@ -179,17 +163,33 @@ global PACKAGES_TO_DOWNLOAD = vcat(PACKAGES_BASED_ON_HOMALG, PACKAGES_BASED_ON_C
 List of deprecated packages.
 """
 global PACKAGES_DEPRECATED = [
+    "Algebroids",
     "BBGG",
     "Bicomplexes",
+    "CategoryConstructor",
+    "CategoriesWithAmbientObjects",
+    "CatReps",
     "ComplexesCategories",
     "DerivedCategories",
+    "ExteriorPowersCategories",
     "FrobeniusCategories",
+    "FunctorCategories",
+    "GradedCategories",
     "HomotopyCategories",
+    "InternalModules",
+    "IntrinsicCategories",
+    "IntrinsicGradedModules",
+    "IntrinsicModules",
+    "LazyCategories",
+    "Locales",
     "ModelCategories",
     "QuotientCategories",
     "StableCategories",
+    "SubcategoriesForCAP",
+    "Toposes",
     "TriangulatedCategories",
     "WrapperCategories",
+    "ZariskiFrames",
 ]
 
 """
