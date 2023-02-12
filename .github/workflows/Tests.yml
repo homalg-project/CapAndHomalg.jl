@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - run: '[ "$GITHUB_EVENT_NAME" = "pull_request" ] || curl --fail -X PUT -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/Tests.yml/enable'
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup Julia environment
         uses: julia-actions/setup-julia@latest
@@ -49,4 +49,4 @@ jobs:
         uses: julia-actions/julia-processcoverage@v1
 
       - name: "Upload to codecov.io"
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
