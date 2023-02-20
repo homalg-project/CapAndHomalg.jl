@@ -25,7 +25,8 @@ jobs:
           - x64
         os:
           - ubuntu-latest
-          - macOS-latest
+          # currently broken: https://github.com/homalg-project/CapAndHomalg.jl/issues/70
+          #- macOS-latest
 
     env:
       JULIA_TRACK_COVERAGE: yes
