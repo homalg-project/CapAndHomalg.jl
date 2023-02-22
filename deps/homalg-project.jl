@@ -142,8 +142,6 @@ global PACKAGES_BASED_ON_TORIC_VARIETIES = [
 
 ##
 global PACKAGES_NEEDED = [
-    ##
-    "InfiniteLists",
 ]
 
 """
@@ -176,6 +174,7 @@ global PACKAGES_DEPRECATED = [
     "FunctorCategories",
     "GradedCategories",
     "HomotopyCategories",
+    "InfiniteLists",
     "InternalModules",
     "IntrinsicCategories",
     "IntrinsicGradedModules",
