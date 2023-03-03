@@ -284,7 +284,7 @@ called once `GAP.jl` gets updated.
 global PACKAGES_TO_COMPILE = [
     "AutoDoc",
     "Gauss",
-    #"Browse", ## do not compile browse as it results into GAP raising the error "Error opening terminal: xterm-256color."
+    "Browse",
     "io",
     "grape",
     "digraphs",
