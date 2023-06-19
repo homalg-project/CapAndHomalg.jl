@@ -291,6 +291,7 @@ global PACKAGES_TO_COMPILE = [
     "grape",
     "digraphs",
     "ferret",
+    "images",
     "json",
     "repsn",
 ]
