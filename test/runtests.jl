@@ -5,6 +5,7 @@ DocMeta.setdocmeta!(CapAndHomalg, :DocTestSetup, :(using CapAndHomalg); recursiv
 include("singular.jl")
 include("4ti2.jl")
 include("digraphs.jl")
+include("json.jl")
 include("homalg_project.jl")
 include("packages.jl")
 include("testmanual.jl")
