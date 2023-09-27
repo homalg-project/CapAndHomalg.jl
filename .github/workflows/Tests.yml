@@ -1,54 +1,62 @@
 name: Tests
-
 on:
   push:
     branches:
-      - "*"
+      - main
+    tags: ['*']
   pull_request:
-    branches:
-      - "*"
-  schedule:
-      - cron: '0 0 * * *' ## daily
-
+concurrency:
+  # Skip intermediate builds: always.
+  # Cancel intermediate builds: only if it is a pull request build.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
 jobs:
   test:
-    name: Julia ${{ matrix.julia-version }} - ${{ matrix.os }} - x64
+    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
     runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.julia-version == 'nightly' }}
     strategy:
       fail-fast: false
       matrix:
-        julia-version:
-          - '1.8'
+        version:
           - '1.9'
           - 'nightly'
-        julia-arch:
-          - x64
         os:
           - ubuntu-latest
           # currently broken: https://github.com/homalg-project/CapAndHomalg.jl/issues/70
           #- macOS-latest
-
-    env:
-      JULIA_TRACK_COVERAGE: yes
-
+        arch:
+          - x64
     steps:
-      - run: '[ "$GITHUB_EVENT_NAME" = "pull_request" ] || curl --fail -X PUT -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/Tests.yml/enable'
-      - uses: actions/checkout@v3
-
-      - name: Setup Julia environment
-        uses: julia-actions/setup-julia@latest
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v1
         with:
-          version: ${{ matrix.julia-version }}
-
-      - name: "Build package"
-        uses: julia-actions/julia-buildpkg@latest
-
-      - name: "Run tests"
-        uses: julia-actions/julia-runtest@latest
-
-      - name: "Process coverage"
-        uses: julia-actions/julia-processcoverage@v1
-
-      - name: "Upload to codecov.io"
-        uses: codecov/codecov-action@v3
+          version: ${{ matrix.version }}
+          arch: ${{ matrix.arch }}
+      - uses: julia-actions/cache@v1
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1
+      - uses: julia-actions/julia-processcoverage@v1
+      - uses: codecov/codecov-action@v3
+        with:
+          files: lcov.info
+  docs:
+    name: Documentation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      statuses: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: '1'
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-docdeploy@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          julia --project=docs -e '
+            using Documenter: DocMeta, doctest
+            using CapAndHomalg
+            DocMeta.setdocmeta!(CapAndHomalg, :DocTestSetup, :(using CapAndHomalg); recursive=true)
+            doctest(CapAndHomalg)'

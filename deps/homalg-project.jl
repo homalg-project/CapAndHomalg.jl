@@ -195,7 +195,7 @@ global PACKAGES_DEPRECATED = [
     DownloadAllPackagesFromHomalgProject()
 
 Apply [`DownloadPackageFromHomalgProject`](@ref) to all packages
-listed in [`PACKAGES_TO_DOWNLOAD`](@ref).
+listed in [`CapAndHomalg.PACKAGES_TO_DOWNLOAD`](@ref).
 """
 function DownloadAllPackagesFromHomalgProject()
 
@@ -211,7 +211,7 @@ export DownloadAllPackagesFromHomalgProject
     UpdateAllPackagesFromHomalgProject()
 
 Apply [`UpdatePackageFromHomalgProject`](@ref) to all packages listed
-in [`PACKAGES_TO_DOWNLOAD`](@ref).
+in [`CapAndHomalg.PACKAGES_TO_DOWNLOAD`](@ref).
 """
 function UpdateAllPackagesFromHomalgProject()
 
@@ -227,7 +227,7 @@ export UpdateAllPackagesFromHomalgProject
     UpdateAllPackagesFromHomalgProjectInParallel()
 
 Apply [`UpdatePackageFromHomalgProject`](@ref) to all packages listed
-in [`PACKAGES_TO_DOWNLOAD`](@ref) in parallel. The output of the git
+in [`CapAndHomalg.PACKAGES_TO_DOWNLOAD`](@ref) in parallel. The output of the git
 commands might get intertwined.
 """
 function UpdateAllPackagesFromHomalgProjectInParallel()
@@ -244,7 +244,7 @@ export UpdateAllPackagesFromHomalgProjectInParallel
     RemoveAllPackagesFromHomalgProject()
 
 Apply [`RemovePackageFromHomalgProject`](@ref) to all packages listed
-in [`PACKAGES_TO_DOWNLOAD`](@ref).
+in [`CapAndHomalg.PACKAGES_TO_DOWNLOAD`](@ref).
 """
 function RemoveAllPackagesFromHomalgProject()
 
@@ -260,7 +260,7 @@ export RemoveAllPackagesFromHomalgProject
     RemoveDeprecatedPackagesFromHomalgProject()
 
 Apply [`RemovePackageFromHomalgProject`](@ref) to all packages listed
-in [`PACKAGES_DEPRECATED`](@ref).
+in [`CapAndHomalg.PACKAGES_DEPRECATED`](@ref).
 """
 function RemoveDeprecatedPackagesFromHomalgProject()
 
@@ -300,7 +300,7 @@ global PACKAGES_TO_COMPILE = [
     CompilePackagesForHomalgProject()
 
 Apply [`GAP.Packages.install`] to all packages listed
-in [`PACKAGES_TO_COMPILE`](@ref).
+in [`CapAndHomalg.PACKAGES_TO_COMPILE`](@ref).
 """
 function CompilePackagesForHomalgProject()
 
