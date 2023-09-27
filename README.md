@@ -114,10 +114,10 @@ This software is licensed under the LGPL, version 3, or any later version.
 [compathelper-img]: https://github.com/homalg-project/CapAndHomalg.jl/workflows/CompatHelper/badge.svg
 
 [action-url]: https://github.com/homalg-project/CapAndHomalg.jl/actions
-[tests-url]: https://github.com/homalg-project/CapAndHomalg.jl/actions?query=workflow%3ATests
-[tagbot-url]: https://github.com/homalg-project/CapAndHomalg.jl/actions?query=workflow%3ATagBot
-[docsbuilder-url]: https://github.com/homalg-project/CapAndHomalg.jl/actions?query=workflow%3ADocsBuilder
-[compathelper-url]: https://github.com/homalg-project/CapAndHomalg.jl/actions?query=workflow%3ACompatHelper
+[tests-url]: https://github.com/homalg-project/CapAndHomalg.jl/actions/workflows/Tests.yml
+[tagbot-url]: https://github.com/homalg-project/CapAndHomalg.jl/actions/workflows/TagBot.yml
+[docsbuilder-url]: https://github.com/homalg-project/CapAndHomalg.jl/actions/workflows/pages/pages-build-deployment
+[compathelper-url]: https://github.com/homalg-project/CapAndHomalg.jl/actions/workflows/CompatHelper.yml
 
 [codecov-img]: https://codecov.io/gh/homalg-project/CapAndHomalg.jl/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/homalg-project/CapAndHomalg.jl
