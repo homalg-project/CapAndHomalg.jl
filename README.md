@@ -108,7 +108,7 @@ This software is licensed under the LGPL, version 3, or any later version.
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
 [docs-stable-url]: https://homalg-project.github.io/CapAndHomalg.jl/stable/
 
-[tests-img]: https://github.com/homalg-project/CapAndHomalg.jl/workflows/Tests/badge.svg
+[tests-img]: https://github.com/homalg-project/CapAndHomalg.jl/actions/workflows/Tests.yml/badge.svg?branch=master
 [tagbot-img]: https://github.com/homalg-project/CapAndHomalg.jl/workflows/TagBot/badge.svg
 [docsbuilder-img]: https://github.com/homalg-project/CapAndHomalg.jl/workflows/DocsBuilder/badge.svg
 [compathelper-img]: https://github.com/homalg-project/CapAndHomalg.jl/workflows/CompatHelper/badge.svg
