@@ -91,6 +91,8 @@ This software is licensed under the LGPL, version 3, or any later version.
 * [Special Priority Project SPP 1489](https://spp.computeralgebra.de/),
 * [Transregional Collaborative Research Centre SFB-TRR 195](https://www.computeralgebra.de/sfb/).
 
+<!-- BEGIN FOOTER -->
+
 [Digraphs]: https://github.com/gap-packages/digraphs/#readme
 [4ti2Interface]: https://github.com/homalg-project/homalg_project/tree/master/4ti2Interface/#readme
 [CddInterface]: https://github.com/homalg-project/CddInterface/#readme
@@ -99,8 +101,6 @@ This software is licensed under the LGPL, version 3, or any later version.
 [lib4ti2_jll.jl]: https://github.com/JuliaBinaryWrappers/lib4ti2_jll.jl/
 [cddlib_jll.jl]: https://github.com/JuliaBinaryWrappers/cddlib_jll.jl/
 [normaliz_jll.jl]: https://github.com/JuliaBinaryWrappers/normaliz_jll.jl/
-
-<!-- BEGIN FOOTER -->
 
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
 [docs-dev-url]: https://homalg-project.github.io/CapAndHomalg.jl/dev/
