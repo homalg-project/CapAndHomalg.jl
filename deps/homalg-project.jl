@@ -36,6 +36,7 @@ function DownloadPackageFromHomalgProject(pkgname)
     @info "Cloning into \"$(dir)\""
     try
         run(`git clone https://github.com/homalg-project/$pkgname $dir`)
+        run(`git reset --hard \"\$(git rev-list --first-parent -n1 --before '2024-04-04 00:00' origin/master)\"`)
     catch
         return false
     end
