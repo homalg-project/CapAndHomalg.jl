@@ -1,7 +1,7 @@
 name = "CapAndHomalg"
 uuid = "c4774649-1891-41ea-a883-87141804c57c"
 authors = ["Mohamed Barakat <mohamed.barakat@uni-siegen.de>"]
-version = "1.5.8"
+version = "1.6.0"
 
 [deps]
 GAP = "c863536a-3901-11e9-33e7-d5cd0df7b904"
@@ -12,8 +12,8 @@ Singular_jll = "43d676ae-4934-50ba-8046-7a96366d613b"
 lib4ti2_jll = "1493ae25-0f90-5c0e-a06c-8c5077d6d66f"
 
 [compat]
-GAP = "0.7, 0.8, 0.9.3, 0.10"
-julia = "1.8"
+GAP = "0.11"
+julia = "1.8, 1.9, 1.10"
 
 [extras]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
