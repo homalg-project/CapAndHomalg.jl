@@ -42,7 +42,9 @@ function LoadPackageAndExposeGlobals(pkgname::String, modulename::Module)
         modulename.eval(:(number_of_last_exported_gap_global_variable = 0))
     end
 
-    for i in (modulename.number_of_last_exported_gap_global_variable + 1):length(EXPORTED_GAP_GLOBALS)
+    start = Bases.invokelatest(() -> modulename.number_of_last_exported_gap_global_variable + 1)
+
+    for i in start:length(EXPORTED_GAP_GLOBALS)
         sym = EXPORTED_GAP_GLOBALS[i]
         if !isdefined(modulename, sym)
             try
