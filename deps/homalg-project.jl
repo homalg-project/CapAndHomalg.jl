@@ -282,17 +282,18 @@ downloaded (once) and installed by `GAP.Packages.install` when
 called once `GAP.jl` gets updated.
 """
 global PACKAGES_TO_COMPILE = [
-    "AutoDoc",
-    "Gauss",
+    "4ti2interface",
+    #"AutoDoc",
+    #"Gauss",
     #"Browse", ## do not compile browse as it results into GAP raising the error "Error opening terminal: xterm-256color."
-    "datastructures",
-    "io",
-    "orb",
+    #"datastructures",
+    #"io",
+    #"orb",
     "grape",
-    "digraphs",
-    "ferret",
+    #"digraphs",
+    #"ferret",
     "images",
-    "json",
+    #"json",
     "repsn",
 ]
 
