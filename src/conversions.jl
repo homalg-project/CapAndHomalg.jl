@@ -42,7 +42,7 @@ function LoadPackageAndExposeGlobals(pkgname::String, modulename::Module)
         modulename.eval(:(number_of_last_exported_gap_global_variable = 0))
     end
 
-    start = Bases.invokelatest(() -> modulename.number_of_last_exported_gap_global_variable + 1)
+    start = Base.invokelatest(() -> modulename.number_of_last_exported_gap_global_variable + 1)
 
     for i in start:length(EXPORTED_GAP_GLOBALS)
         sym = EXPORTED_GAP_GLOBALS[i]
