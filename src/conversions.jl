@@ -95,9 +95,3 @@ function Display(obj::GapObj)
 end
 
 export Display
-
-function InfoOfInstalledOperationsOfCategory(obj::GapObj)
-    Display(InfoStringOfInstalledOperationsOfCategory(obj))
-end
-
-export InfoOfInstalledOperationsOfCategory
