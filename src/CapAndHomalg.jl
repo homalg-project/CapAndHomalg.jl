@@ -210,8 +210,8 @@ function __init__()
     if show_banner
         print("CapAndHomalg v")
         printstyled("$version\n", color = :green)
-        print("Imported OSCAR's components GAP and Singular_jll\n")
-        print("Type: ?CapAndHomalg for more information\n")
+        println("Imported OSCAR's components GAP and Singular_jll")
+        println("Type: ?CapAndHomalg for more information")
     end
 
 end
