@@ -240,7 +240,7 @@ GAP: The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ]
 julia> Display( Sgrmod )
 A CAP category with name The category of graded left f.p. modules over Q[x,y] (with weights [ 1, 1 ]):
 
-38 primitive operations were used to derive 242 operations for this category which algorithmically
+38 primitive operations were used to derive 250 operations for this category which algorithmically
 * IsAbelianCategoryWithEnoughProjectives
 * IsAdditiveMonoidalCategory
 and not yet algorithmically
